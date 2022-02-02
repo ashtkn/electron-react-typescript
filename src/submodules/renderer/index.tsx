@@ -1,12 +1,18 @@
+import { Container, Box, Typography } from '@mui/material';
 import React from 'react';
 
 import './styles.css';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>Hello.</h1>
-    </div>
+    <Container>
+      <Box>
+        <Typography variant="h1" component="h2">Hello.</Typography>
+      </Box>
+      <Box>
+        <Typography>Welcome to Electron App.</Typography>
+      </Box>
+    </Container>
   );
 };
 
