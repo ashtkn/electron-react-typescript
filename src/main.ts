@@ -57,6 +57,6 @@ app.once('window-all-closed', () => app.quit());
 
 // IPC
 ipcMain.on(IPCKeys.SEND_MESSAGE, (event, message) => {
-  console.log(message)
-  event.sender.send(IPCKeys.RECEIVE_MESSAGE, "Hello from main process");
-})
+  console.log(message);
+  event.sender.send(IPCKeys.RECEIVE_MESSAGE, 'Hello from main process');
+});

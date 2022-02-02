@@ -7,11 +7,11 @@ const App: React.FC = () => {
   useEffect(() => {
     return window.myApi.onReceiveMessage((message) => {
       console.log(message);
-    })
+    });
   }, []);
   const handleClick = useCallback(() => {
     window.myApi.sendMessage('Hello from renderer process');
-  }, [])
+  }, []);
   return (
     <div>
       <h1>Hello.</h1>

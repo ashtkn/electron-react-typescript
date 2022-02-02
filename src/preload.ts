@@ -3,13 +3,13 @@ import { IPCKeys } from './constants';
 
 contextBridge.exposeInMainWorld('myApi', {
   sendMessage: (message: string): void => {
-    ipcRenderer.send(IPCKeys.SEND_MESSAGE, message)
+    ipcRenderer.send(IPCKeys.SEND_MESSAGE, message);
   },
-  onReceiveMessage: (handler: (message: string) => void): () => void => {
+  onReceiveMessage: (handler: (message: string) => void): (() => void) => {
     ipcRenderer.on(
       IPCKeys.RECEIVE_MESSAGE,
       (event: IpcRendererEvent, message: string) => handler(message)
-    )
-    return () => ipcRenderer.removeAllListeners(IPCKeys.RECEIVE_MESSAGE)
-  }
+    );
+    return () => ipcRenderer.removeAllListeners(IPCKeys.RECEIVE_MESSAGE);
+  },
 });
