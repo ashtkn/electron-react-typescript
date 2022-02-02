@@ -3,6 +3,8 @@ import { BrowserWindow, app, session, ipcMain } from 'electron';
 import { searchDevtools } from 'electron-search-devtools';
 import { IPCKeys } from './constants';
 
+import { promises as fs } from 'fs';
+
 const isDev = process.env.NODE_ENV === 'development';
 
 // 開発モードの場合はホットリロードする
@@ -56,7 +58,11 @@ app.whenReady().then(async () => {
 app.once('window-all-closed', () => app.quit());
 
 // IPC
-ipcMain.on(IPCKeys.SEND_MESSAGE, (event, message) => {
+ipcMain.on(IPCKeys.SEND_MESSAGE, async (event, message) => {
   console.log(message);
+  {
+    const files = await fs.readdir('.');
+    files.forEach((file) => console.log(file));
+  }
   event.sender.send(IPCKeys.RECEIVE_MESSAGE, 'Hello from main process');
 });
