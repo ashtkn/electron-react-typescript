@@ -113,7 +113,7 @@ const renderer: Configuration = {
   // セキュリティ対策として 'electron-renderer' ターゲットは使用しない
   target: 'web',
   entry: {
-    renderer: './src/renderer.tsx',
+    renderer: './src/renderer/index.tsx',
   },
   plugins: [
     // CSS を JS へバンドルせず別ファイルとして出力するプラグイン

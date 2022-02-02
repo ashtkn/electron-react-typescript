@@ -1,6 +1,7 @@
 import path from 'path';
-import { BrowserWindow, app, session } from 'electron';
+import { BrowserWindow, app, session, ipcMain } from 'electron';
 import { searchDevtools } from 'electron-search-devtools';
+import { IPCKeys } from './constants';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -53,3 +54,9 @@ app.whenReady().then(async () => {
 
 // すべてのウィンドウが閉じられたらアプリを終了する
 app.once('window-all-closed', () => app.quit());
+
+// IPC
+ipcMain.on(IPCKeys.SEND_MESSAGE, (event, message) => {
+  console.log(message)
+  event.sender.send(IPCKeys.RECEIVE_MESSAGE, "Hello from main process");
+})
